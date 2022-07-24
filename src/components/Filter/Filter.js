@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/exports";
-import { filter } from '../../redux/actions';
+import { filter } from '../../redux/filter/filterAction';
 import s from "./Filter.module.css";
 
 function Filter() {

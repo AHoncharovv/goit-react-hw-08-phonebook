@@ -1,8 +1,12 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/authOperations';
 
 export default function LoginForm() {
+
+  const dispatch = useDispatch();
 
     const [user, setUser] = useState({
         email: '',
@@ -11,7 +15,7 @@ export default function LoginForm() {
 
     const onSubmit = event => {
         event.preventDefault();
-        console.log(user);
+        dispatch(authOperations.logIn(user))
         
         setUser({
             email: '',

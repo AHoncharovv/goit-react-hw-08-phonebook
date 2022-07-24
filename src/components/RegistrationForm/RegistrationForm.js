@@ -1,33 +1,36 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/authOperations';
 
 export default function RegistrationForm() {
 
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-    })
+  const dispatch = useDispatch();
 
-    const onSubmit = event => {
-        event.preventDefault();
-        console.log(user);
-        
-        setUser({
-            name: '',
-            email: '',
-            password: '',
-        });
-    }
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+  
+  const onSubmit = event => {
+    event.preventDefault();
+    dispatch(authOperations.registration(user))   
+    setUser({
+      name: '',
+      email: '',
+      password: '',
+    });
+  }
 
-    const onChange = event => {
-        setUser(prevState => ({
-            ...prevState,
-            [event.target.name]: event.target.value
-        }))
-    }
-
+  const onChange = event => {
+    setUser(prevState => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }))
+  }
+    
   return (
     <Form onSubmit={onSubmit}>
 

@@ -1,24 +1,33 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from "react";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-const Phonebook = lazy(() => import('./Pages/Phonebook.js'));
-const Registration = lazy(() => import('./Pages/Registration.js'));
-const Login = lazy(() => import('./Pages/Login.js'));
+import authOperations from 'redux/auth/authOperations';
+const Phonebook = lazy(() => import('./Pages/Phonebook'));
+const Registration = lazy(() => import('./Pages/Registration'));
+const Login = lazy(() => import('./Pages/Login'));
 const Navigation = lazy(() => import('./components/Navigation'));
 
 
+
 function App() {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchLoggedUser())
+  }, [dispatch])
   
   return ( 
     <>
-      <Navigation />
       <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path='/register' element={<Registration />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/contacts' element={<Phonebook />} />
-        <Route path='*' element={<Navigate to='/register' replace />} />
-      </Routes>
+        <Navigation />
+        <Routes>
+          <Route path='/register' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/contacts' element={<Phonebook />} />
+          <Route path='*' element={<Navigate to='/login' replace />} />
+        </Routes>
     </Suspense>
     </>
   ); 

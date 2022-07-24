@@ -11,7 +11,6 @@ function Registration() {
         color: '#010101'
       }}
     >
-      
       <RegistrationForm />
     </div>
   ); 

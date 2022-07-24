@@ -11,7 +11,6 @@ function Login() {
         color: '#010101'
       }}
     >
-      
       <LoginForm />
     </div>
   ); 
