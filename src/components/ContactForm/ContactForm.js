@@ -66,7 +66,6 @@ function ContactForm() {
             </label>
 
             <button className={s.btn}>Add contact</button>
-            {/* {isLoading && <p className={s.text}>We are working on adding a contact</p>} */}
                    
         </form>      
     );   

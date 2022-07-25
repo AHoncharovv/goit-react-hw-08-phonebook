@@ -19,7 +19,7 @@ const registration = createAsyncThunk('auth/register', async registerData => {
         return data;
     }
     catch (error) {
-        console.log(error);
+        alert("Oops, something went wrong( Try again!");
     }
 });
 
@@ -30,7 +30,7 @@ const logIn = createAsyncThunk('auth/login', async loginData => {
         return data;
     }
     catch (error) {
-        console.log(error);
+        alert("Oops, something went wrong( Try again!");
     }
 });
 
@@ -41,7 +41,7 @@ const logOut = createAsyncThunk('auth/logout', async () => {
         return data;
     }
     catch (error) {
-        console.log(error);
+        alert("Oops, something went wrong( Try again!");
     }
 });
 
@@ -49,7 +49,7 @@ const fetchLoggedUser = createAsyncThunk('auth/refresh', async (_,thunkAPI) => {
     
     const state = thunkAPI.getState();
     const refreshToken = state.auth.token;
-    if (refreshToken === null) { return state};
+    if (refreshToken === null) { return thunkAPI.rejectWithValue()};
     token.set(refreshToken);
     try {
         const { data } = await axios.get('/users/current');
@@ -57,7 +57,7 @@ const fetchLoggedUser = createAsyncThunk('auth/refresh', async (_,thunkAPI) => {
         return data;
     }
     catch (error) {
-        console.log(error);
+        alert("Oops, something went wrong( Try again!");
     }
 })
 

@@ -12,24 +12,22 @@ export default function Navigation() {
     return (
         <>
             <nav className={styles.navigation}>
-                <NavLink to='/contacts'
-                    className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)}
-                >
-                    Phonebook
-                </NavLink>
-
                 {isLogged ?
+                    <>
+                    <NavLink to='/contacts'
+                        className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)}>
+                        Phonebook
+                    </NavLink>
                     <UserMenu />
+                    </>
                     :
                     <>
                         <NavLink to='/register'
-                        className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)} 
-                    >
+                        className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)} >
                         Registration
                     </NavLink>
                     <NavLink to='/login'
-                        className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)}
-                    >
+                        className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)}>
                         Login
                     </NavLink>
                     </>
