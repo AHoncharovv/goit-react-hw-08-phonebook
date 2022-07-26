@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import contactsSelectors from "redux/contacts/contactsSelectors";
 import contactsOperations from "redux/contacts/contactsOperations";
-import s from './ContactForm.module.css';
 
 function ContactForm() {
 
@@ -35,39 +36,33 @@ function ContactForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={s.form}>
-                    
-            <label className={s.label}>
-                Name
-                <input
-                    type="text"
-                    name="name"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                    required
-                    value={name}
-                    onChange={handleInputChange}
-                    className={s.input}
-                />
-            </label>
+        <Form onSubmit={handleSubmit}>
+  
+            <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text"
+                            name="name"
+                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                            required
+                            value={name}
+                            onChange={handleInputChange}/>
+            </Form.Group>
 
-            <label className={s.label}>
-                Number
-                <input
-                    type="tel"
-                    name="number"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                    required
-                    value={number}
-                    onChange={handleInputChange}
-                    className={s.input}
-                />
-            </label>
-
-            <button className={s.btn}>Add contact</button>
-                   
-        </form>      
+            <Form.Group className="mb-3" controlId="formPassword">
+                <Form.Label>Number</Form.Label>
+                <Form.Control type="tel"
+                            name="number"
+                            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                            required
+                            value={number}
+                            onChange={handleInputChange}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Add contact
+            </Button>
+        </Form>
     );   
 };
 

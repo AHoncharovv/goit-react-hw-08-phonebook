@@ -1,7 +1,13 @@
-.container{
-    margin-left: auto;
-    display: inline;
+.container {
+    display: block;
+    align-items: center;
 }
+
 .text {
-    display: inline;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px;
+    font-weight: 500;
+    color: teal;
+    font-size: 18px;
 }

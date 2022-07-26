@@ -13,13 +13,13 @@ export default function Navigation() {
         <>
             <nav className={styles.navigation}>
                 {isLogged ?
-                    <>
+                    <div className={styles.container}>
                     <NavLink to='/contacts'
                         className={({ isActive }) => (isActive ? `${styles.activeLink}` : `${styles.link}`)}>
                         Phonebook
                     </NavLink>
                     <UserMenu />
-                    </>
+                    </div>
                     :
                     <>
                         <NavLink to='/register'

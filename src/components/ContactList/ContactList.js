@@ -1,6 +1,7 @@
 import s from './ContactList.module.css';
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import contactsOperations from 'redux/contacts/contactsOperations';
 import contactsSelectors from 'redux/contacts/contactsSelectors';
 
@@ -22,7 +23,7 @@ function ContactList() {
     }
 
     const normalizedFilter = filteredValue.toLowerCase();
-    let visibleContacts = "";
+    let visibleContacts = null;
     normalizedFilter ? visibleContacts = contactsList.filter(user => user.name.toLowerCase().includes(normalizedFilter)) : visibleContacts = contactsList;
     
     return (
@@ -34,7 +35,9 @@ function ContactList() {
                     {visibleContacts.map((user) => (
                         <li key={user.id} className={s.item}>
                             <span className={s.text}>{user.name} : {user.number}</span>
-                            <button type="button" value={user.id} onClick={handleDeleteUser} className={s.btn}>Delete</button>
+                            <Button variant="primary" type="button" value={user.id} onClick={handleDeleteUser} >
+                                Delete
+                            </Button>
                         </li>
                     ))}
                 </ul >)

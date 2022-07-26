@@ -12,9 +12,6 @@ const Registration = lazy(() => import('./Pages/Registration'));
 const Login = lazy(() => import('./Pages/Login'));
 const Navigation = lazy(() => import('./components/Navigation'));
 
-
-
-
 function App() {
 
   const isFetchingLoggedUser = useSelector(authSelectors.getFetchingLoggedUser);
@@ -25,7 +22,7 @@ function App() {
   }, [dispatch])
   
   return ( 
-    !isFetchingLoggedUser && (
+    !isFetchingLoggedUser ? (
       <>
       <Suspense fallback={<div>Loading...</div>}>
         <Navigation />
@@ -62,6 +59,8 @@ function App() {
     </Suspense>
     </>
     )
+      :
+      <h2>Loading...</h2>
   ); 
 };
 
