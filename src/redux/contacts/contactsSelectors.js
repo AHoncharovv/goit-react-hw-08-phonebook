@@ -1,9 +1,11 @@
 const getContactsList = (state) => state.contacts.contactsList;
-const getIsLoad = (state) => state.contacts.isLoad; 
+const getIsFetchingContacts = (state) => state.contacts.isFetchingContacts; 
+const getIsLoading = (state) => state.contacts.isLoading; 
 
 const contactsSelectors = {
     getContactsList,
-    getIsLoad,
+    getIsFetchingContacts,
+    getIsLoading,
 }
 
 export default contactsSelectors;

@@ -3,35 +3,36 @@ import contactsOperations from "./contactsOperations";
 
 const initialState = {
     contactsList: null,
-    isLoad: true,
+    isFetchingContacts: true,
+    isLoading: false,
 };
 
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState,
     extraReducers: {
-        [contactsOperations.getContacts.pending](state) {
-            state.isLoad = true;
-        },
+        // [contactsOperations.getContacts.pending](state) {
+        //     state.isFetchingContacts = true;
+        // },
         [contactsOperations.getContacts.fulfilled](state, action) {
             state.contactsList = action.payload;
-            state.isLoad = false;
+            state.isFetchingContacts = false;
         },
         [contactsOperations.addContact.pending](state) {
-            state.isLoad = true;
+            state.isLoading = true;
         },
         [contactsOperations.addContact.fulfilled](state, action) {
             state.contactsList = [...state.contactsList, action.payload];
-            state.isLoad = false;
+            state.isLoading = false;
         },
         [contactsOperations.deleteContact.pending](state) {
-            state.isLoad = true;
+            state.isLoading = true;
         },
         [contactsOperations.deleteContact.fulfilled](state, action) {
             state.contactsList = state.contactsList.filter(contact => (
                 contact.id !== action.payload
             ));
-            state.isLoad = false;
+            state.isLoading = false;
         },
     },
 })

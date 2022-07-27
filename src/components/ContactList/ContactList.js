@@ -4,10 +4,12 @@ import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import contactsOperations from 'redux/contacts/contactsOperations';
 import contactsSelectors from 'redux/contacts/contactsSelectors';
+import BorderExample from 'components/Spinner/Spinner';
 
 function ContactList() {
     const dispatch = useDispatch();
-    const isLoad = useSelector(contactsSelectors.getIsLoad);
+    const isFetchingContacts = useSelector(contactsSelectors.getIsFetchingContacts);
+    const isLoading = useSelector(contactsSelectors.getIsLoading);
     const contactsList = useSelector(contactsSelectors.getContactsList);
 
     useEffect(() => {
@@ -28,19 +30,22 @@ function ContactList() {
     
     return (
         <>
-            {isLoad ?
+            {isFetchingContacts ?
                 ('Loading...')
                 :
-                (<ul className={s.list}>
-                    {visibleContacts.map((user) => (
-                        <li key={user.id} className={s.item}>
-                            <span className={s.text}>{user.name} : {user.number}</span>
-                            <Button variant="primary" type="button" value={user.id} onClick={handleDeleteUser} >
-                                Delete
-                            </Button>
-                        </li>
-                    ))}
-                </ul >)
+                (<>
+                    <ul className={s.list}>
+                        {visibleContacts.map((user) => (
+                            <li key={user.id} className={s.item}>
+                                <span className={s.text}>{user.name} : {user.number}</span>
+                                <Button variant="primary" type="button" value={user.id} onClick={handleDeleteUser} >
+                                    Delete
+                                </Button>
+                            </li>
+                        ))}
+                    </ul >
+                    {isLoading&&<BorderExample />}
+                </>)
             }
         </>
     )
