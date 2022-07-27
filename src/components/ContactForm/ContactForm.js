@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import contactsSelectors from "redux/contacts/contactsSelectors";
 import contactsOperations from "redux/contacts/contactsOperations";
-import Spinner from "react-bootstrap/esm/Spinner";
 
 function ContactForm() {
 
